@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +36,7 @@ public class controller {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/home")
+    @GetMapping(value = {"/" , "/home"})
     public String home(Model model, HttpServletRequest req) {
         String key = req.getParameter("key");
         List<SanPham> sanPhamList;
@@ -46,5 +47,11 @@ public class controller {
         }
         model.addAttribute("sanPhamList", sanPhamList);
         return "index";
+    }
+
+    @GetMapping("/san-pham/delete/{id}")
+    public String deleteSinhVien(@PathVariable String id) {
+        repo.deleteById(Integer.valueOf(id));
+        return "redirect:/home";
     }
 }
