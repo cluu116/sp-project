@@ -1,0 +1,34 @@
+.d-flex .btn>a {
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidebar p {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.sidebar li.bg-light {
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.sidebar li {
+    align-items: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 700px;
+}
+
+.rowsp {
+    display: flex;
+    justify-content: space-between;
+}
