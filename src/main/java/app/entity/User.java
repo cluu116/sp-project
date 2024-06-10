@@ -25,7 +25,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_khach_hang", nullable = false)
     private KhachHang khachHang;
 }

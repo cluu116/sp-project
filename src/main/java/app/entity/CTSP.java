@@ -20,7 +20,7 @@ public class CTSP {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_sp")
     @NotNull(message = "* Vui lòng chọn sản phẩm!")
     private SanPham sanPham;
