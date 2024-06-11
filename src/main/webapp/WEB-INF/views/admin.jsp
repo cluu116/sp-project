@@ -102,6 +102,16 @@
                     <a href="?section=kichCo"
                        class="list-group-item list-group-item-action ${param.section == 'kichCo' ? 'active' : ''}">Kích
                         Cỡ</a>
+                    <a href="?section=ctsp"
+                       class="list-group-item list-group-item-action ${param.section == 'ctsp' ? 'active' : ''}">Chi
+                        Tiết Sản Phẩm</a>
+                    <a href="?section=hd"
+                       class="list-group-item list-group-item-action ${param.section == 'hd' ? 'active' : ''}">Hóa
+                        Đơn</a>
+                    <a href="?section=hdct"
+                       class="list-group-item list-group-item-action ${param.section == 'hdct' ? 'active' : ''}">Chi
+                        Tiết Hóa Đơn</a>
+
                 </div>
             </div>
             <div class="col-md-9">
@@ -440,6 +450,186 @@
                                     </div>
                                     <c:if test="${!sizeList.last}">
                                         <a href="/admin?section=kichCo&page=${sizeList.number + 1}&key=${param.key}"
+                                           class="btn btn-primary">Next</a>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${param.section == 'ctsp'}">
+                        <div class="card">
+                            <div class="card-header">
+                                CHI TIẾT SẢN PHẨM
+                            </div>
+                            <div class="card-body">
+                                <c:if test="${not empty addCTSP}">
+                                    <div class="alert alert-success" role="alert">
+                                        <span class="text-success">${addCTSP}</span>
+                                    </div>
+                                </c:if>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên SP</th>
+                                        <th>Tên màu</th>
+                                        <th>Tên size</th>
+                                        <th>Giá bán</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Chức năng</th>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${ctspList.content}" var="s" varStatus="status">
+                                        <tr>
+                                            <td>${status.index + 1}</td>
+                                            <td>${s.sanPham.tenSP}</td>
+                                            <td>${s.mauSac.tenMau}</td>
+                                            <td>${s.size.tenSize}</td>
+                                            <td>${s.giaBan}</td>
+                                            <td>${s.trangThai}</td>
+                                            <td>
+                                                <fmt:formatDate value="${s.ngayTao}" pattern="yyyy-MM-dd"/>
+                                            </td>
+                                            <td>
+                                                <a href="/ctsp/detail/${s.id}" class="btn btn-info">Chi tiết</a>
+                                                <a href="/ctsp/delete/${s.id}" class="btn btn-danger"
+                                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-between">
+                                    <c:if test="${ctspList.number > 0}">
+                                        <a href="/admin?section=ctsp&page=${ctspList.number - 1}&key=${param.key}"
+                                           class="btn btn-primary">Previous</a>
+                                    </c:if>
+                                    <div>
+                                        Page ${ctspList.number + 1} of ${ctspList.totalPages}
+                                    </div>
+                                    <c:if test="${!ctspList.last}">
+                                        <a href="/admin?section=ctsp&page=${ctspList.number + 1}&key=${param.key}"
+                                           class="btn btn-primary">Next</a>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${param.section == 'hd'}">
+                        <div class="card">
+                            <div class="card-header">
+                                DANH SÁCH HÓA ĐƠN
+                            </div>
+                            <div class="card-body">
+                                <c:if test="${not empty addHD}">
+                                    <div class="alert alert-success" role="alert">
+                                        <span class="text-success">${addHD}</span>
+                                    </div>
+                                </c:if>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên KH</th>
+                                        <th>Địa chỉ</th>
+                                        <th>SDT</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Chức năng</th>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${hoaDonList.content}" var="s" varStatus="status">
+                                        <tr>
+                                            <td>${status.index + 1}</td>
+                                            <td>${s.khachHang.hoTen}</td>
+                                            <td>${s.diaChi}</td>
+                                            <td>${s.soDienThoai}</td>
+                                            <td>${s.trangThai}</td>
+                                            <td>
+                                                <fmt:formatDate value="${s.ngayTao}" pattern="yyyy-MM-dd"/>
+                                            </td>
+                                            <td>
+                                                <a href="/hd/detail/${s.id}" class="btn btn-info">Chi tiết</a>
+                                                <a href="/hd/delete/${s.id}" class="btn btn-danger"
+                                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-between">
+                                    <c:if test="${hoaDonList.number > 0}">
+                                        <a href="/admin?section=hd&page=${hoaDonList.number - 1}&key=${param.key}"
+                                           class="btn btn-primary">Previous</a>
+                                    </c:if>
+                                    <div>
+                                        Page ${hoaDonList.number + 1} of ${hoaDonList.totalPages}
+                                    </div>
+                                    <c:if test="${!hoaDonList.last}">
+                                        <a href="/admin?section=hd&page=${hoaDonList.number + 1}&key=${param.key}"
+                                           class="btn btn-primary">Next</a>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:when test="${param.section == 'hdct'}">
+                        <div class="card">
+                            <div class="card-header">
+                                CHI TIẾT HÓA ĐƠN
+                            </div>
+                            <div class="card-body">
+                                <c:if test="${not empty addHDCT}">
+                                    <div class="alert alert-success" role="alert">
+                                        <span class="text-success">${addHDCT}</span>
+                                    </div>
+                                </c:if>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>ID hóa đơn</th>
+                                        <th>ID CTSP</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá bán</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Chức năng</th>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${hdctList.content}" var="s" varStatus="status">
+                                        <tr>
+                                            <td>${status.index + 1}</td>
+                                            <td>${s.hoaDon.id}</td>
+                                            <td>${s.ctsp.id}</td>
+                                            <td>${s.soLuongMua}</td>
+                                            <td>${s.giaBan}</td>
+                                            <td>${s.tongTien}</td>
+                                            <td>${s.trangThai}</td>
+                                            <td>
+                                                <fmt:formatDate value="${s.ngayTao}" pattern="yyyy-MM-dd"/>
+                                            </td>
+                                            <td>
+                                                <a href="/hdct/detail/${s.id}" class="btn btn-info">Chi tiết</a>
+                                                <a href="/hdct/delete/${s.id}" class="btn btn-danger"
+                                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-between">
+                                    <c:if test="${hdctList.number > 0}">
+                                        <a href="/admin?section=hdct&page=${hdctList.number - 1}&key=${param.key}"
+                                           class="btn btn-primary">Previous</a>
+                                    </c:if>
+                                    <div>
+                                        Page ${hdctList.number + 1} of ${hdctList.totalPages}
+                                    </div>
+                                    <c:if test="${!hdctList.last}">
+                                        <a href="/admin?section=hdct&page=${hdctList.number + 1}&key=${param.key}"
                                            class="btn btn-primary">Next</a>
                                     </c:if>
                                 </div>

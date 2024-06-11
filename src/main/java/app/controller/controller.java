@@ -38,6 +38,8 @@ public class controller {
     HDCTRespository hdctRes;
     @Autowired
     CTSPRespository ctspRes;
+    @Autowired
+    hoaDonRespository hdRes;
 
     @GetMapping("/login")
     public String login() {
@@ -78,6 +80,9 @@ public class controller {
         model.addAttribute("userList", res.findAll());
         model.addAttribute("mauSacList", msRes.findAll(pageable));
         model.addAttribute("sizeList", sizeRes.findAll(pageable));
+        model.addAttribute("ctspList", ctspRes.findAll(pageable));
+        model.addAttribute("hoaDonList", hdRes.findAll(pageable));
+        model.addAttribute("hdctList", hdctRes.findAll(pageable));
         return "admin";
     }
 
