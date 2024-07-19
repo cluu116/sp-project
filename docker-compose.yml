@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    image: asm-ph35388:1.0.0
+    ports:
+      - "35388:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/db_ban_hang?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4.0
+    environment:
+      DATA_HOST: docker-mysql
+      DATA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_ban_hang
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
